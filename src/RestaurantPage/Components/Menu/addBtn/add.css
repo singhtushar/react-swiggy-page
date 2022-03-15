@@ -1,0 +1,13 @@
+.add-btn {
+  display: flex;
+  margin-left: 10px;
+  position: absolute;
+  top: 90px;
+  background-color: white;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: rgb(20, 172, 20);
+}
