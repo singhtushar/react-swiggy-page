@@ -1,13 +1,39 @@
 .add-btn {
   display: flex;
-  margin-left: 10px;
-  position: absolute;
-  top: 90px;
   background-color: white;
   padding: 0 8px;
   cursor: pointer;
 }
 
-.add-btn:hover {
+.add-btn-qty {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 82px;
+  margin-left: 13px;
+  border: 1.5px solid gray;
+}
+
+.decrement-btn {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  font-size: large;
+  font-weight: 600;
+}
+
+.increment-btn {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  font-size: large;
+  font-weight: 600;
+}
+
+.increment-btn:hover {
+  background-color: rgb(20, 172, 20);
+}
+
+.decrement-btn:hover {
   background-color: rgb(20, 172, 20);
 }

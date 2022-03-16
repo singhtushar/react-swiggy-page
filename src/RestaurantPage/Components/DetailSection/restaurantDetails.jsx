@@ -12,20 +12,6 @@ const RestaurantDetails = (props) => {
             <DisplayDetails details={details} />
             <Offer key={details} details = {details} />
         </div>
-        {/* <Search /> */}
-        {/* <div className="filters">
-            <span className="search-container">
-                <i className='fa fa-search'></i> <input className="search-container_input" type="text" placeholder='Search for dishes...'/>
-            </span>
-            <span className="search-container">
-                <input className="search-container_input" type="checkbox" />
-                Veg Only
-            </span>
-            <span className="search-container">
-                <input className="search-container_input" type="checkbox" />
-                Favourites
-            </span>
-        </div> */}
     </div>
     );
 }

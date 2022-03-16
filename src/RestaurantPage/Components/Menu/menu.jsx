@@ -4,10 +4,20 @@ import { sidemenu } from '../../Services/sidebarElements';
 import Mainmenu from './mainmenu/mainmenu';
 import './menu.css';
 import Cart from '../Menu/cart/cart';
+import { menudata } from '../../Services/menuItems'
 
 class Menu extends Component {
     state = {
+        totalMenu : [],
+        filteredMenu : [],
         cart: [],
+    }
+
+    componentDidMount() {
+        this.setState({
+            totalMenu : menudata,
+            filteredMenu : menudata
+        });
     }
 
     handleIncrement = (product) => {
@@ -51,12 +61,28 @@ class Menu extends Component {
 
     }
 
+    handleSearch = (str) => {
+        let newMenu = this.state.totalMenu;
+
+        newMenu = newMenu.filter(item => item.Name.toLowerCase().includes(str.toLowerCase()));
+
+        this.setState({filteredMenu : newMenu});
+    }
+
+    handleVegOnly = (e) => {
+        let newMenu = this.state.totalMenu;
+        if(e.target.checked)
+            newMenu = newMenu.filter(item=>item.isVeg === true);
+
+        this.setState({filteredMenu: newMenu})
+    }
+
     render() {
-        console.log(this.state.cart)
+        // console.log(this.state.cart)
         return (
             <div className="menu-container">
                 <Sidemenu sidemenu={sidemenu} />
-                <Mainmenu onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} cart={this.state.cart} />
+                <Mainmenu menudata={this.state.filteredMenu} onSearch={this.handleSearch} onVegOnly={this.handleVegOnly} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} cart={this.state.cart} />
                 <Cart onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} cart={this.state.cart} />
             </div>
         );

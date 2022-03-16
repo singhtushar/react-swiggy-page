@@ -43,9 +43,9 @@ const Cart = (props) => {
                             <div className="item-type"><img src={item.isVeg ? VEG_ICON: NONVEG_ICON} style={{height: 25, width: 20}} alt="" /></div>
                             <div className="cart-item-name">{item.product.Name}</div>
                             <div className="btn">
-                                <button className='decrement-btn' onClick={() => onDecrement(item.product)}>-</button>
-                                {item.qty>0 ? <div className="item-qtn" style={{paddingLeft: 10, paddingRight: 10, fontWeight: 600}} >{item.qty}</div>: 'ADD'}
-                                <button className='increment-btn' onClick={() => onIncrement(item.product)}>+</button>
+                                <button className='cart-decrement-btn' onClick={() => onDecrement(item.product)}>-</button>
+                                {item.qty>0 ? <div className="item-qtn" style={{paddingLeft: 15, paddingRight: 15, fontWeight: 600}} >{item.qty}</div>: 'ADD'}
+                                <button className='cart-increment-btn' onClick={() => onIncrement(item.product)}>+</button>
                             </div>
                             <div className="item-price">&#8377; {item.qty * item.product.Price}</div>
                         </div>
