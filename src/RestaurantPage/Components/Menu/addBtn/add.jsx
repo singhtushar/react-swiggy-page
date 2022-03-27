@@ -2,13 +2,11 @@ import React from "react";
 import "./add.css";
 
 const Add = (props) => {
-  console.log("props inside Add", props);
-
   function whenEmpty() {
     return (
       <div
         className="add-btn"
-        onClick={() => props.onAdd(props.product)}
+        onClick={() => props.onAdd(props.product, props.menuItems, props.cart)}
         style={{
           position: "absolute",
           top: 82,
@@ -30,7 +28,9 @@ const Add = (props) => {
       <div className="add-btn-qty">
         <button
           className="decrement-btn"
-          onClick={() => props.onRemove(props.product)}
+          onClick={() =>
+            props.onRemove(props.product, props.menuItems, props.cart)
+          }
         >
           -
         </button>
@@ -48,7 +48,9 @@ const Add = (props) => {
         </div>
         <button
           className="increment-btn"
-          onClick={() => props.onAdd(props.product)}
+          onClick={() =>
+            props.onAdd(props.product, props.menuItems, props.cart)
+          }
         >
           +
         </button>

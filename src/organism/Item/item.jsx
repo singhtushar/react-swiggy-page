@@ -3,7 +3,7 @@ import { NONVEG_ICON } from "../../images";
 import Add from "../../RestaurantPage/Components/Menu/addBtn/add";
 
 const Item = (props) => {
-  const { item, cart } = props;
+  const { item, cart, menuItems } = props;
 
   return (
     <div className="item-container">
@@ -26,12 +26,16 @@ const Item = (props) => {
         <Add
           key={item}
           product={item}
+          cart={cart}
+          menuItems={menuItems}
           onAdd={props.onAdd}
           onRemove={props.onRemove}
           value={
-            cart.find((prod) => prod.id === item.id)
-              ? cart.find((prod) => prod.id === item.id).count
-              : 0
+            cart !== undefined
+              ? cart.find((prod) => prod.id === item.id)
+                ? cart.find((prod) => prod.id === item.id).count
+                : 0
+              : null
           }
         />
       </div>

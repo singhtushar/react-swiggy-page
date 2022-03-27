@@ -16,6 +16,7 @@ const Mainmenu = (props) => {
             <Item
               key={item.id}
               item={item}
+              menuItems={menuItems}
               cart={cart}
               onAdd={props.onAdd}
               onRemove={props.onRemove}

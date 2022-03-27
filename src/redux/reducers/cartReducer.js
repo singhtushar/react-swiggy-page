@@ -1,9 +1,13 @@
-const cart = (state = [], action) => {
+const initState = {
+  cartItems: [],
+};
+
+const cart = (state = initState, action) => {
   switch (action.type) {
     case "ADD_ITEM":
-      return action.payload.newCartState;
+      return { ...state, cartItems: action.payload.newCartState };
     case "REMOVE_ITEM":
-      return action.payload.newCartState;
+      return { ...state, cartItems: action.payload.newCartState };
     default:
       return state;
   }

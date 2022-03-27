@@ -1,58 +1,60 @@
-import store from "../store";
-export const ADD_ITEM = (product) => {
-  let newMenuState = [...store.getState().menuItems];
-  newMenuState = newMenuState.map((item) => {
-    if (item.Name === product.Name) {
-      if (item.count === undefined) {
-        item.count = 1;
-      } else {
-        item.count++;
-      }
-    }
-    return item;
-  });
-
-  let newCartState = [...store.getState().cart];
-  if (newCartState.length === 0) newCartState = [{ ...product, count: 1 }];
-  else {
-    let flag = false;
-    newCartState.forEach((item) => {
-      if (item.Name === product.Name) {
-        item.count++;
-        flag = true;
-      }
-    });
-    if (!flag) {
-      newCartState.push({ ...product, count: 1 });
-    }
-  }
+import { renderOnSearch } from "../../RestaurantPage/Helpers/renderSearchItems";
+import {
+  updateCartItemOnAdd,
+  updateCartItemOnRemove,
+} from "../../RestaurantPage/Helpers/updateCartItems";
+import {
+  updateMenuItemOnAdd,
+  updateMenuItemOnRemove,
+} from "../../RestaurantPage/Helpers/updateMenuItems";
+import { menudata } from "../../RestaurantPage/Services/menuItems";
+export const ADD_ITEM = (product, menuItems, cartItems) => {
+  let newMenuState = updateMenuItemOnAdd(product, menuItems);
+  let newCartState = updateCartItemOnAdd(product, cartItems);
   return {
     type: "ADD_ITEM",
     payload: { newMenuState, newCartState },
   };
 };
 
-export const REMOVE_ITEM = (product) => {
-  let newMenuState = [...store.getState().menuItems];
-  newMenuState.forEach((item) => {
-    if (item.Name === product.Name) {
-      if (item.count > 0) {
-        item.count--;
-        if (item.count === 0) delete item.count;
-      }
-    }
-  });
-
-  let newCartState = [...store.getState().cart];
-  newCartState.forEach((item, index) => {
-    if (item.Name === product.Name) {
-      item.count--;
-      if (item.count === 0) newCartState.splice(index, 1);
-    }
-  });
+export const REMOVE_ITEM = (product, menuItems, cartItems) => {
+  let newMenuState = updateMenuItemOnRemove(product, menuItems);
+  let newCartState = updateCartItemOnRemove(product, cartItems);
 
   return {
     type: "REMOVE_ITEM",
     payload: { newMenuState, newCartState },
+  };
+};
+
+export const SEARCH_ITEM = (str, menuItem) => {
+  console.log(menuItem);
+  let newMenuState = renderOnSearch(str, menuItem);
+  return {
+    type: "SEARCH_ITEM",
+    payload: { newMenuState },
+  };
+};
+
+export const VEG_ONLY = (toggle, cartItem) => {
+  let menuItems = [...menudata];
+  let newMenuState = [];
+  if (toggle === false) {
+    if (cartItem !== undefined) newMenuState = [...cartItem];
+    menudata.forEach((item) => {
+      let flag = false;
+      if (cartItem !== undefined) {
+        cartItem.forEach((cartItem) => {
+          if (item.id === cartItem.id) flag = true;
+        });
+      }
+      if (!flag) {
+        newMenuState.push(item);
+      }
+    });
+  } else newMenuState = menuItems.filter((item) => item.isVeg === true);
+  return {
+    type: "VEG_ONLY",
+    payload: { newMenuState },
   };
 };

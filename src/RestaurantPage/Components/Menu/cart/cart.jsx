@@ -5,9 +5,7 @@ import { NONVEG_ICON } from "../../../../images";
 import "./cart.css";
 
 const Cart = (props) => {
-  //   const cart = useSelector((state) => state.cart);
-  //   const dispatch = useDispatch();
-  const { cart } = props;
+  const { cart, menuItems } = props;
   console.log("props inside cart", props);
   function onEmpty() {
     return (
@@ -60,7 +58,7 @@ const Cart = (props) => {
                   <div className="btn">
                     <button
                       className="cart-decrement-btn"
-                      onClick={() => props.onRemove(item)}
+                      onClick={() => props.onRemove(item, menuItems, cart)}
                     >
                       -
                     </button>
@@ -80,7 +78,7 @@ const Cart = (props) => {
                     )}
                     <button
                       className="cart-increment-btn"
-                      onClick={() => props.onAdd(item)}
+                      onClick={() => props.onAdd(item, menuItems, cart)}
                     >
                       +
                     </button>
