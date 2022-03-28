@@ -8,6 +8,7 @@ import {
   updateMenuItemOnRemove,
 } from "../../RestaurantPage/Helpers/updateMenuItems";
 import { menudata } from "../../RestaurantPage/Services/menuItems";
+
 export const ADD_ITEM = (product, menuItems, cartItems) => {
   let newMenuState = updateMenuItemOnAdd(product, menuItems);
   let newCartState = updateCartItemOnAdd(product, cartItems);

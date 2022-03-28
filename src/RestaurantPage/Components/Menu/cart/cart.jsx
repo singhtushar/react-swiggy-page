@@ -2,6 +2,7 @@ import React from "react";
 import { EMPTY_CART_IMAGE } from "../../../../images";
 import { VEG_ICON } from "../../../../images";
 import { NONVEG_ICON } from "../../../../images";
+import { Link } from "react-router-dom";
 import "./cart.css";
 
 const Cart = (props) => {
@@ -34,7 +35,10 @@ const Cart = (props) => {
           <span className="subtotal-text">Subtotal</span>
           <span className="subtotal">&#8377; {subtotal}</span>
         </div>
-        <button className="checkout-btn">CHECKOUT</button>
+
+        <button className="checkout-btn">
+          <Link to="/checkout">CHECKOUT</Link>
+        </button>
       </>
     );
   }
