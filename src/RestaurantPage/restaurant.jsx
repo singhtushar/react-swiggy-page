@@ -6,13 +6,15 @@ import RestaurantDetails from "./Components/DetailSection/restaurantDetails";
 import Menu from "./Components/Menu/menu.jsx";
 import { connect } from "react-redux";
 import { ADD_ITEM, REMOVE_ITEM, SEARCH_ITEM, VEG_ONLY } from "../redux/actions";
+import { restaurantDetailsContext } from "../context/restaurantdetailsContext";
 
 const Restaurant = (props) => {
-  console.log(props);
   return (
     <>
       <Header navContents={navElements} address={details.address} />
-      <RestaurantDetails details={details} />
+      <restaurantDetailsContext.Provider value={{ details: details }}>
+        <RestaurantDetails />
+      </restaurantDetailsContext.Provider>
       <Menu
         onAdd={props.onAdd}
         onRemove={props.onRemove}

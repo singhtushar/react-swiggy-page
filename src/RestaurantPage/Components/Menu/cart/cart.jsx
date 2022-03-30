@@ -2,12 +2,12 @@ import React from "react";
 import { EMPTY_CART_IMAGE } from "../../../../images";
 import { VEG_ICON } from "../../../../images";
 import { NONVEG_ICON } from "../../../../images";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./cart.css";
 
 const Cart = (props) => {
   const { cart, menuItems } = props;
-  console.log("props inside cart", props);
+  const navigate = useNavigate();
   function onEmpty() {
     return (
       <React.Fragment>
@@ -36,8 +36,13 @@ const Cart = (props) => {
           <span className="subtotal">&#8377; {subtotal}</span>
         </div>
 
-        <button className="checkout-btn">
-          <Link to="/checkout">CHECKOUT</Link>
+        <button
+          className="checkout-btn"
+          onClick={() => {
+            navigate("/checkout");
+          }}
+        >
+          CHECKOUT
         </button>
       </>
     );
