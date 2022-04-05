@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import Restaurant from "./RestaurantPage/restaurant";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Checkout from "./CheckoutPage/checkout";
 
-function App() {
+const App = (props) => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Restaurant />} />
+          <Route
+            exact
+            path="/Checkout"
+            element={<Checkout cart={props.cartItems} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    menuItems: state.menu.menuItems,
+    cartItems: state.cart.cartItems,
+  };
+};
+
+export default connect(mapStateToProps)(App);
