@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component } from "react";
+import React from "react";
 import Restaurant from "./RestaurantPage/restaurant";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -23,7 +23,6 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     menuItems: state.menu.menuItems,
     cartItems: state.cart.cartItems,
